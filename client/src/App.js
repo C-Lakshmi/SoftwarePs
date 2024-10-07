@@ -1,6 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import ChatMessage from './chatMessage';
+import voiceChat from './voice'
+import axios from 'axios';
+import Voice from './voice';
 
 function App() {
   const [question, setQuestion] = useState('');
@@ -79,6 +82,7 @@ function App() {
             <strong>{msg.role === 'user' ? 'You' : 'GPT-4'}:</strong>
             {/* <span>{msg.content}</span> */}
             <ChatMessage msg = {msg}/>
+            <Voice />
             <CopyButton textToCopy={msg.content} />
           </div>
         ))}
@@ -97,6 +101,9 @@ function App() {
       <button className="button" onClick={askQuestion} disabled={loading}>
         {loading ? 'Loading...' : 'Ask'}
       </button>
+      <div className="voice">
+      
+      </div>
     </div>
   );
 }
